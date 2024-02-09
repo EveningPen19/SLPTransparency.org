@@ -1,0 +1,43 @@
+// Fetch list of districts based on selected state
+const stateInput = document.getElementById('state');
+const districtSelect = document.getElementById('district');
+
+stateInput.addEventListener('change', async () => {
+  const selectedState = stateInput.value;
+  // Replace this with your actual logic to fetch districts based on state
+  const districts = await fetchDistricts(selectedState);
+  populateDistrictSelect(districts);
+});
+
+// Helper function to populate the district select element
+function populateDistrictSelect(districts) {
+  districtSelect.innerHTML = '';
+  districts.forEach(district => {
+    const option = document.createElement('option');
+    option.text = district;
+    option.value = district;
+    districtSelect.appendChild(option);
+  });
+}
+
+// Replace this with your actual search logic
+function searchDistricts() {
+  const selectedState = stateInput.value;
+  const selectedDistrict = districtSelect.value;
+  // Perform search based on selected state and district
+  // Display search results
+}
+
+// Example function to simulate fetching districts (replace with your actual API call)
+async function fetchDistricts(state) {
+  const response = await fetch(`https://api.example.com/districts/${state}`);
+  const data = await response.json();
+  return data.districts;
+}
+
+// Submit button action (replace with your actual form submission logic)
+const searchForm = document.getElementById('search-form');
+searchForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  searchDistricts();
+});
